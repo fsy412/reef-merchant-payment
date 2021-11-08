@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./home.css"
+// import "./home.css"
 const Home = (props: { account: string }) => {
     const [apiKey, setApiKey] = useState('');
     const [webHook, setWebHook] = useState('');
