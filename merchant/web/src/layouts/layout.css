@@ -1,0 +1,56 @@
+.content {
+  display: flex;
+}
+
+.leftMenu {
+  flex: 1;
+}
+
+.right {
+  flex: 6;
+  margin: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+.rightContent {
+  width: 80%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0 1;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+li {
+  text-align: center;
+}
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.barTitle {
+  margin-left: 10px;
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 15px;
+  width: 100%;
+}
+
+
+.menuItemIcon{
+  margin-left: 20px;
+}
