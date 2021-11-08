@@ -43,7 +43,6 @@ export async function merchantInfo(ctx) {
     let body = await getBody(ctx)
     let { account } = JSON.parse(body)
     let ret = await selectMerchantInfo(account)
-    console.log("merchant info ", ret)
     ctx.body = {
         errcode: 0,
         errmsg: "success",
