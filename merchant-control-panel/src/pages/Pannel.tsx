@@ -65,11 +65,7 @@ const Home = (props: { name: string }) => {
                     <td>{record.id}</td>
                     <td>{record.account}</td>
                     <td>{record.webhook}</td>
-                    <td>
-                      {moment(record.create_time * 1000).format(
-                        'YYYY/MM/DD HH:mm:ss',
-                      )}
-                    </td>
+                    <td>{moment(record.create_time * 1000).format('YYYY/MM/DD HH:mm:ss')}</td>
                   </tr>
                 )
               })}
@@ -90,10 +86,7 @@ const Home = (props: { name: string }) => {
                 return (
                   <tr key={key}>
                     <td>
-                      <a
-                        href={
-                          'https://testnet.reefscan.com/transfer/' + record.tx
-                        }
+                      <a href={'https://testnet.reefscan.com/transfer/' + record.tx}
                         target={
                           'https://testnet.reefscan.com/transfer/' + record.tx
                         }
@@ -104,9 +97,7 @@ const Home = (props: { name: string }) => {
                     <td>{record.payment_address}</td>
                     <td>{record.balance} REEF</td>
                     <td>
-                      {moment(record.create_time * 1000).format(
-                        'YYYY/MM/DD HH:mm:ss',
-                      )}
+                      {moment(record.create_time * 1000).format('YYYY/MM/DD HH:mm:ss')}
                     </td>
                   </tr>
                 )
