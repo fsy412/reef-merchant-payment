@@ -12,7 +12,7 @@ class PaymentHistory extends React.Component {
     }
   }
   componentWillMount() {
-    fetch('http://localhost:8000/payment_history')
+    fetch('http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:8000/payment_history')
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -21,7 +21,7 @@ class PaymentHistory extends React.Component {
       })
   }
   onSearchClick = () => {
-    fetch('http://localhost:8000/search_payment_history', { method: 'post', body: JSON.stringify({ address: this.searchAddress.value }) })
+    fetch('http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:8000/search_payment_history', { method: 'post', body: JSON.stringify({ address: this.searchAddress.value }) })
       .then((res) => res.json())
       .then((res) => {
         this.setState({
