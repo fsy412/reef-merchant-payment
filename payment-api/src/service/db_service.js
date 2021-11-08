@@ -112,7 +112,14 @@ export async function selectLatestPayments() {
 
 export async function selectStatistics() {
     let totalReefs = new Promise((resolve, reject) => {
-        resolve(100)
+        let sql = 'SELECT SUM(balance)as num FROM payment_log;';
+        db.query(sql, (err, results, fields) => {
+            if (err) {
+                console.log('[SELECT ERROR] -', err.message);
+                reject(err)
+            };
+            resolve(results[0].num)
+        });
     });
     let totalPayments = new Promise((resolve, reject) => {
         let sql = 'SELECT COUNT(*) as num FROM payment_log;';
