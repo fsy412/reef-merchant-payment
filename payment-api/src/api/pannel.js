@@ -20,7 +20,6 @@ export async function latestPayments(ctx) {
 
 export async function statistic(ctx) {
     let res = await selectStatistics()
-    console.log('111', res)
     ctx.body = {
         errcode: 0,
         errmsg: "success",

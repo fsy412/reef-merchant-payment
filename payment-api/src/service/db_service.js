@@ -26,7 +26,7 @@ export function insertPaymentLog(paymentAddress, merchant, sender, balance, tx,)
 export async function selectPaymentLog(merchant) {
     return new Promise((resolve, reject) => {
         try {
-            let sql = 'SELECT * FROM payment_log where merchant = ?';
+            let sql = 'SELECT * FROM payment_log where merchant = ? order by create_time desc';
             let params = [merchant];
             db.query(sql, params, (err, results, fields) => {
                 if (err) {
@@ -45,7 +45,6 @@ export async function selectPaymentLogByAddress(address, merchant) {
     return new Promise((resolve, reject) => {
         try {
             let sql = `SELECT * FROM payment_log WHERE merchant='${merchant}' and payment_address LIKE '%${address}%'`;
-            console.log(sql)
             db.query(sql, (err, results, fields) => {
                 if (err) {
                     console.log('[SELECT ERROR] -', err.message);
@@ -122,7 +121,6 @@ export async function selectStatistics() {
                 console.log('[SELECT ERROR] -', err.message);
                 reject(err)
             };
-            console.log(results)
             resolve(results[0].num)
         });
     });
@@ -133,7 +131,6 @@ export async function selectStatistics() {
                 console.log('[SELECT ERROR] -', err.message);
                 reject(err)
             };
-            console.log(results)
             resolve(results[0].num)
         });
     });

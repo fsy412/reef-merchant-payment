@@ -71,7 +71,7 @@ class Payment extends React.Component {
                 let tx = await transfer.signAndSend(accounts[0].address)
                 this.setState({ tx: tx.toString() })
                 // update payment hash to backend
-                fetch('http://localhost:9001/api/payment_tx', { method: 'post', body: JSON.stringify({ tx: tx.toString(), paymentAddress: this.state.payAddress }) })
+                fetch('http://localhost:8000/payment_tx', { method: 'post', body: JSON.stringify({ tx: tx.toString(), paymentAddress: this.state.payAddress }) })
                   .then((res) => res.json())
                   .catch((e) => console.log('error:', e))
 

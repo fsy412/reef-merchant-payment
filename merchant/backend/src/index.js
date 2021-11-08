@@ -66,8 +66,9 @@ router.post("/search_payment_history", async (ctx) => {
 
 router.post("/webhook", async (ctx) => {
     let body = await getBody(ctx)
-    console.log("/webhook ", body)
-    notifications.push(body)
+    let { paymentAddress } = JSON.parse(body)
+    console.log("/webhook ", paymentAddress)
+    notifications.push(paymentAddress)
     ctx.body = {
         errcode: 0,
         errmsg: "success",
@@ -75,13 +76,11 @@ router.post("/webhook", async (ctx) => {
 });
 
 router.post("/query_notification", async (ctx) => {
-    let body = await getBody(ctx)
-
     if (notifications.length > 0) {
         ctx.body = {
             errcode: 0,
             errmsg: "success",
-            data: { "paymentAddress": "123" }
+            data: { "paymentAddress": notifications[0] }
         }
         notifications = []
         return

@@ -3,8 +3,6 @@ import { timeStampNow } from '../util/time.js'
 import { getAddressBalance, transferToMainAccount } from './reef_service.js'
 import { insertPaymentLog } from "../service/db_service.js"
 import request from 'request'
-import crypto from 'crypto'
-let md5 = crypto.createHash('md5');
 
 const SECOND = 1
 let payments = new Map();
@@ -19,13 +17,9 @@ export function createPayment(reefAddress, pair, webhook, merchantAccount) {
         pair: pair,
         state: "paying",
         webhook: webhook,
-        crateTime: timeStampNow(),
-        payTime: 0,
-        transferTime: 0,
-        doneTime: 0,
+        createTime: timeStampNow(),
         balance: 0,
         merchantAccount: merchantAccount,
-        merchantApiKey: "",
         tx: "",
     }
     addPayment(payment)
@@ -34,17 +28,18 @@ export function createPayment(reefAddress, pair, webhook, merchantAccount) {
 export function updatePaymentTx(address, tx) {
     let payment = payments.get(address);
     payment.tx = tx
-    payments.set(payment.address, payment)
 }
 
-function webHookNotify(apiUrl, params, sign) {
-    console.log(`webhook notify:${apiUrl}, params:${params}, sign:${sign}`)
+function webHookNotify(apiUrl, data) {
+    console.log(`webhook notify:${apiUrl}, data:${data}`)
     return new Promise((resolve, reject) => {
         request({
             url: apiUrl,
+            headers: {
+                'Content-Type': 'application/json',
+            },
             method: "POST",
-            headers: { "sign": sign },
-            data: params
+            body: JSON.stringify(data)
         }, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 resolve(body)
@@ -63,9 +58,9 @@ async function update() {
                 if (balance != '0') {
                     payment.balance = balance
                     payment.state = 'transferring'
-                    await webHookNotify(payment.webhook, {}, "sign_xxxxxxxx")
+                    await webHookNotify(payment.webhook, { "paymentAddress": payment.address })
                 } else {
-                    if (timeStampNow() - payment.crateTime > 30 * SECOND) {
+                    if (timeStampNow() - payment.createTime > 30 * SECOND) {
                         payments.delete(address)
                     }
                 }

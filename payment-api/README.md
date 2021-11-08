@@ -1,4 +1,4 @@
-## Backend server uses payment API
+# Payment API
 
 ## Project setup
 ```

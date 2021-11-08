@@ -1,11 +1,11 @@
-## Backend server uses payment API
+## Payment UI
 
 ## Project setup
 ```
 yarn install
 ```
 
-### Compiles and run
+### Compiles and hot-reloads for development
 ```
 yarn serve
 ```

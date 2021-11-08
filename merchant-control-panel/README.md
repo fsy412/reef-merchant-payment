@@ -1,6 +1,7 @@
+# Merchant Payment Pannel
 ## Project setup
 ```
-yarn 
+yarn
 ```
 ### Compiles and hot-reloads for development
 ```
