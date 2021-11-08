@@ -16,7 +16,7 @@ const Register = () => {
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault()
 
-    await fetch('http://localhost:9001/api/merchant/register', {
+    await fetch('http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:9001/api/merchant/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
