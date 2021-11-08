@@ -13,8 +13,6 @@ const Home = (props: { account: string }) => {
         setWebHook(data.webhook)
     }
     const loadMerchant = () => {
-        setApiKey("123123")
-        setWebHook("12312321")
         fetch('http://localhost:9001/api/merchant/info', { method: 'POST', body: JSON.stringify({ "account": window.MyNamespace.account }) }
         ).then((res: any) => res.json()).then((res: any) => setMerchant(res.data))
     }
