@@ -35,7 +35,7 @@ Reef-merchant-payment is a hackathon project for building a web payment API on R
     http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:9001
 
 ## YouTube Demo
-https://www.youtube.com/watch?v=xZgbMxbODSg
+https://youtu.be/yuvcoeiGnu8
 
 
 ## License
