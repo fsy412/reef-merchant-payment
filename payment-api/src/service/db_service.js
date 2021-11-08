@@ -137,3 +137,21 @@ export async function selectStatistics() {
 
     return Promise.all([totalMerchants, totalPayments, totalReefs])
 }
+
+
+export async function selectMerchantInfo(account) {
+    return new Promise((resolve, reject) => {
+        try {
+            let sql = 'SELECT * from merchant where account = ?';
+            db.query(sql, [account], (err, results, fields) => {
+                if (err) {
+                    console.log('[SELECT ERROR] -', err.message);
+                    reject(err)
+                };
+                resolve(results)
+            });
+        } catch (err) {
+            reject(err)
+        }
+    })
+}

@@ -36,11 +36,6 @@ const Register = () => {
 
   return (
     <>
-      {/* <Alert show={true} variant="success">
-        Merchant Registered
-        <h5> API Key:skldfjlskdjflsljdk</h5>
-      </Alert> */}
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title> Merchant Registered</Modal.Title>

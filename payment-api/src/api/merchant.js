@@ -1,5 +1,5 @@
 import { getBody } from "../util/http.js"
-import { insertMerchant } from "../service/db_service.js"
+import { insertMerchant, selectMerchantInfo } from "../service/db_service.js"
 
 function genAPIkey(length) {
     var result = '';
@@ -36,5 +36,20 @@ export async function login(ctx) {
     ctx.body = {
         errcode: 0,
         errmsg: "success",
+    }
+}
+
+export async function merchantInfo(ctx) {
+    let body = await getBody(ctx)
+    let { account } = JSON.parse(body)
+    let ret = await selectMerchantInfo(account)
+    console.log("merchant info ", ret)
+    ctx.body = {
+        errcode: 0,
+        errmsg: "success",
+        data: {
+            "apiKey": ret[0].apikey,
+            "webhook": ret[0].webhook
+        }
     }
 }

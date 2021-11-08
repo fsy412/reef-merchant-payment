@@ -4,7 +4,7 @@ import cors from '@koa/cors';
 
 import { startPaymentService } from './service/payment_service.js'
 import { payment, paymentHistory, paymentTx, searchPaymentHistory } from './api/payment.js'
-import { register, login } from './api/merchant.js'
+import { register, login, merchantInfo } from './api/merchant.js'
 import { merchantList, latestPayments, statistic } from "./api/pannel.js"
 import { CONFIG } from './config.js'
 
@@ -21,6 +21,7 @@ router.post("/api/search_payment_history", searchPaymentHistory)
 // merchant
 router.post("/api/merchant/register", register);
 router.post("/api/merchant/login", login);
+router.post("/api/merchant/info", merchantInfo)
 // pannel
 router.get("/api/merchant_list", merchantList);
 router.get("/api/latest_payments", latestPayments);
