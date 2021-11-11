@@ -4,8 +4,6 @@ import { WsProvider } from '@polkadot/rpc-provider';
 import { Provider, Signer as EvmSigner } from '@reef-defi/evm-provider';
 import { Keyring } from '@polkadot/api';
 
-const GAS = 1.5
-
 let evmProvider = new Provider({
     provider: new WsProvider('wss://rpc-testnet.reefscan.com/ws')
 });
@@ -23,15 +21,24 @@ export async function genReefPayAddress() {
 
 export async function getAddressBalance(address) {
     const balance = await evmProvider.api.derive.balances.all(address)
-        .then((res) => res.freeBalance / 1e18)
+        .then((res) => {
+            // console.log(res.freeBalance)
+            return res.freeBalance
+        })
         .then((res) => res === '0' ? '0' : res);
     console.log(`address:${address}, balance:${balance}`)
     return balance
 }
 
 export async function transferToMainAccount(sender, recipient, balance, alicePair) {
+    const { partialFee } = await evmProvider.api.tx.balances
+        .transfer(recipient, balance)
+        .paymentInfo(sender);
+
+    const gas = partialFee.toBigInt();
+    console.log("gas:", gas);
     console.log(`transferToMainAccount from:${sender} -> to:${recipient}, balance:${balance}`)
     await evmProvider.api.tx.balances
-        .transfer(recipient, BigInt(1e18 * (balance - GAS)))
+        .transfer(recipient, BigInt(balance) - BigInt(gas))
         .signAndSend(alicePair)
 }
