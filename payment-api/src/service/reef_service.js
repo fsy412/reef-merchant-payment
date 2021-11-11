@@ -4,8 +4,6 @@ import { WsProvider } from '@polkadot/rpc-provider';
 import { Provider, Signer as EvmSigner } from '@reef-defi/evm-provider';
 import { Keyring } from '@polkadot/api';
 
-const GAS = 1.5
-
 let evmProvider = new Provider({
     provider: new WsProvider('wss://rpc-testnet.reefscan.com/ws')
 });
