@@ -1,4 +1,4 @@
-# Reef Merchant Payament
+# Reef Merchant Payment
 Reef-merchant-payment is a hackathon project for building a web payment API on Reef chain.
 
 - Hackaton link: https://gitcoin.co/issue/reef-defi/reef-finance-bounties/1/100026837
