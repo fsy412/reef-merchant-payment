@@ -14,7 +14,7 @@ export function insertMerchant(merchantName, account, webHookUrl, apiKey) {
 
 export function insertPaymentLog(paymentAddress, merchant, sender, balance, tx,) {
     let sql = 'INSERT INTO payment_log(payment_address, merchant, sender, balance, tx, create_time) VALUES(?,?,?,?,?,?)';
-    let params = [paymentAddress, merchant, sender, balance, tx, timeStampNow()];
+    let params = [paymentAddress, merchant, sender, balance / 1e18, tx, timeStampNow()];
     db.query(sql, params, function (err, result) {
         if (err) {
             console.log('[INSERT ERROR] - ', err.message, sql);
