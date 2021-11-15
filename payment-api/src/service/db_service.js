@@ -162,3 +162,12 @@ export async function selectMerchantInfo(account) {
         }
     })
 }
+
+let pingInterval = setInterval(() => {
+    console.log('ping db')
+    db.ping((err) => {
+        if (err) {
+            console.log('ping error: ' + JSON.stringify(err));
+        }
+    });
+}, 3600000 * 3);
