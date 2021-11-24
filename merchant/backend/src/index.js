@@ -93,4 +93,4 @@ router.post("/query_notification", async (ctx) => {
 
 app.use(cors()).use(router.routes()).use(router.allowedMethods());
 console.log(`listening on port ${CONFIG.ListenPort}`)
-app.listen(CONFIG.ListenPort, "127.0.0.1");
+app.listen(CONFIG.ListenPort, "0.0.0.0");
