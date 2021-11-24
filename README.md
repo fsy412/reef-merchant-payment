@@ -22,17 +22,17 @@ Reef-merchant-payment is a hackathon project for building a web payment API on R
  ## Deployed websites and API service on AWS
  - Merchant
 
-    Payment UI: http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com/merchant
+    Payment UI: http://47.243.16.81/merchant
 
-    Backend: http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:8000
+    Backend: http://47.243.16.81:8000
 
 - Merchant Pannel
 
-    http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com
+    http://47.243.16.81
 
 - Payment API
 
-    http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:9001
+    http://47.243.16.81:9001
 
 ## YouTube Demo
 https://youtu.be/yuvcoeiGnu8
