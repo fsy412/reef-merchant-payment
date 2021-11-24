@@ -24,17 +24,17 @@ const Home = (props: { name: string }) => {
     setReefNum(data[2])
   }
   const loadMerchantList = () => {
-    fetch('http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:9001/api/merchant_list')
+    fetch('http://47.243.16.81:9001/api/merchant_list')
       .then((res: any) => res.json())
       .then((res: any) => setMerchantList(res.data.res))
   }
   const loadLatestPayments = () => {
-    fetch('http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:9001/api/latest_payments')
+    fetch('http://47.243.16.81:9001/api/latest_payments')
       .then((res: any) => res.json())
       .then((res: any) => setLatestPayments(res.data.res))
   }
   const loadStats = () => {
-    fetch('http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:9001/api/stat')
+    fetch('http://47.243.16.81:9001/api/stat')
       .then((res: any) => res.json())
       .then((res: any) => updateStat(res))
   }

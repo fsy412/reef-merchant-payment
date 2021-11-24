@@ -35,7 +35,7 @@ class Payment extends React.Component {
 
   onNextClick = (e) => {
     e.preventDefault()
-    fetch('http://18.185.157.86:8000/payment', { method: 'post' })
+    fetch('http://47.243.16.81:8000/payment', { method: 'post' })
       .then((res) => res.json())
       .then((data) => this.setState({ payAddress: data.data }))
       .catch((e) => console.log('error:', e))
@@ -71,13 +71,13 @@ class Payment extends React.Component {
                 let tx = await transfer.signAndSend(accounts[0].address)
                 this.setState({ tx: tx.toString() })
                 // update payment hash to backend
-                fetch('http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:8000/payment_tx', { method: 'post', body: JSON.stringify({ tx: tx.toString(), paymentAddress: this.state.payAddress }) })
+                fetch('http://47.243.16.81:8000/payment_tx', { method: 'post', body: JSON.stringify({ tx: tx.toString(), paymentAddress: this.state.payAddress }) })
                   .then((res) => res.json())
                   .catch((e) => console.log('error:', e))
 
                 // start query the webhook notification result
                 this.timer = setInterval(() => {
-                  fetch('http://ec2-18-185-157-86.eu-central-1.compute.amazonaws.com:8000/query_notification', { method: 'post', body: {} })
+                  fetch('http://47.243.16.81:8000/query_notification', { method: 'post', body: {} })
                     .then((res) => res.json())
                     .then((res) => {
                       console.log(res)
