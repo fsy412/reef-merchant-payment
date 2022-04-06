@@ -1,10 +1,14 @@
-import {CasperClient,CasperServiceByJsonRPC, CLPublicKey,DeployUtil } from "casper-js-sdk";
+import Web3Modal from 'web3modal'
+import { ethers } from 'ethers'
 
-// Create Casper client and service to interact with Casper node.
-const apiUrl = 'http://104.243.40.167:7777';
-const casperService = new CasperServiceByJsonRPC(apiUrl);
-const casperClient = new CasperClient(apiUrl);
+export async function initWallet() {
+    const web3Modal = new Web3Modal({
+        network: "mainnet",
+        cacheProvider: true,
+    })
+    const connection = await web3Modal.connect()
+    const provider = new ethers.providers.Web3Provider(connection)
+    const signer = provider.getSigner()
 
-export async function initWallet(){
-    return {casperService, casperClient}
+    return { signer }
 }

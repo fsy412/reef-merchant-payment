@@ -1,38 +1,34 @@
 import { Container, Dropdown, Table, Row, Col } from "react-bootstrap"
 import "./index.scss"
-import {CasperClient,CasperServiceByJsonRPC, CLPublicKey,DeployUtil } from "casper-js-sdk";
+import { CasperClient, CasperServiceByJsonRPC, CLPublicKey, DeployUtil } from "casper-js-sdk";
 import { useEffect, useState } from "react";
-import {initWallet} from "../../services/wallet"
+import { initWallet } from "../../services/wallet"
 
 const Swap = () => {
-    const [casperService, setCasperService] = useState<any>(undefined);
-    const [casperClient, setCasperClient] = useState<any>(undefined);
-    useEffect(()=>{
-     const init = async()=>{
-         const {casperService, casperClient} = await initWallet();
-         setCasperService(casperService);
-         setCasperClient(casperClient);
-         console.log(casperService, casperClient)
-     }
-     init();
-    },[]);
-    
-    const AccountInformation = async()=> {
+    const [casperService, setSigner] = useState<any>(undefined);
+    useEffect(() => {
+        const init = async () => {
+            
+        }
+        init();
+    }, []);
+
+    const AccountInformation = async () => {
         const isConnected = await window.casperlabsHelper.isConnected()
-        console.log('get account info',isConnected)
-        if(isConnected){
+        console.log('get account info', isConnected)
+        if (isConnected) {
             const publicKey = await window.casperlabsHelper.getActivePublicKey();
             const latestBlock = await casperService.getLatestBlockInfo();
             const root = await casperService.getStateRootHash(latestBlock.block.hash);
-            const balanceUref = await casperService.getAccountBalanceUrefByPublicKey(root,  CLPublicKey.fromHex(publicKey));
+            const balanceUref = await casperService.getAccountBalanceUrefByPublicKey(root, CLPublicKey.fromHex(publicKey));
 
             //account balance from the last block
             const balance = await casperService.getAccountBalance(
                 latestBlock.block.header.state_root_hash,
                 balanceUref
             );
-            
-            console.log('balance',balance)
+
+            console.log('balance', balance)
         }
     }
 
@@ -75,7 +71,7 @@ const Swap = () => {
                 <button className="createButton">Create Order</button>
             </div>
             <div>
-                <button className="createButton" onClick={()=>{AccountInformation()} }>GetBalance</button>
+                <button className="createButton" onClick={() => { AccountInformation() }}>GetBalance</button>
             </div>
             <div>
                 <Table striped bordered hover variant="">

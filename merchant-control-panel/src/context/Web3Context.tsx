@@ -48,13 +48,10 @@ export const Web3Provider = (props:any) => {
           console.log(error);
         }
     };
-    return (
-      <Web3Context.Provider value={{ account, ...functionsToExport }}>
-        {props.children}
-      </Web3Context.Provider>
-    );
-};
-
-
+    
+    return (<Web3Context.Provider value={{ account, ...functionsToExport }}>
+      {props.children}
+  </Web3Context.Provider>)
+}
 export default Web3Context;
     
