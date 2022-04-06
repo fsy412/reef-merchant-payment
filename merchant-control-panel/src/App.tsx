@@ -19,7 +19,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <Nav name={name} setName={setName} /> */}
         <PageHead></PageHead>
         <Route path="/" exact component={() => <Pannel name={name} />} />
         <Route path="/bridge" exact component={() => <Swap />} />
