@@ -12,9 +12,8 @@ const PageHead = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">  </Nav>
             <Nav>
-                <Nav.Link className="wallet" href="#" onClick={connectWallet}>Connect to Wallet</Nav.Link>
+                <Nav.Link className="wallet" href="#" onClick={connectWallet}> {account ? account?.toString() : "Connect To Wallet"}</Nav.Link>
             </Nav>
-
             <Nav>
                 <Nav.Link className="disconnect" href="#" >Disconnect</Nav.Link>
             </Nav>

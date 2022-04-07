@@ -12,7 +12,7 @@ function App() {
       <Web3Provider>
         <BrowserRouter>
           <PageHead></PageHead>
-          <Route path="/bridge" exact component={() => <Swap />} />
+          <Route path="/" exact component={() => <Swap />} />
         </BrowserRouter>
       </Web3Provider>
     </div>
